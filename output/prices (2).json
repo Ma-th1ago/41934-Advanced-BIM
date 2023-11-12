@@ -1,0 +1,9 @@
+{
+    "Concrete (precast)" : 20,
+    "Concrete (in-situ)" : 30,
+    "EPS S80" : 25,
+    "Drain plate (EPS and vapor barrier)": 45,
+    "Steel" : 55,
+    "Concrete with rebar" : 75,
+    "Aluminium" : 40
+}
