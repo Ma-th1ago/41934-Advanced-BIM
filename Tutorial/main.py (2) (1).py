@@ -1,9 +1,18 @@
+
+###Importing necessary libraries and modules###
+##Here, necessary libraries and modules are imported to handle IFC models and perform operations on them.##
+
 from pathlib import Path
 import ifcopenshell
 import ifcopenshell.util.selector
 import json
 from ifcopenshell.api import run
 import ifcopenshell.api.material.assign_material   
+
+
+
+###Opening the IFC model###
+##This opens the IFC model by attempting to find it in the same folder as the script, and if that fails, it tries to locate the model based on the context of the Blender library.##
 
 modelname = "LLYN-STRU"
 
@@ -18,6 +27,11 @@ except OSError:
         model = ifcopenshell.open(model_url)
     except OSError:
         print(f"ERROR: please check your model folder : {model_url} does not exist")
+
+
+
+###Definition of a custom class for elements###
+##This class is used to represent custom elements with properties such as ID, description, volume, and material.##
 
 class  Custom_element():
     def __init__(self, id, description, volume, material):
@@ -35,6 +49,10 @@ class  Custom_element():
                 volume = {self.volume}m3
                """
 
+
+
+###Function to define material based on description###
+##This function takes in a description of an element and returns a material based on certain conditions.##
 
 def define_material_based_on_description(description):
     if "Vægelement" in description:
@@ -57,9 +75,18 @@ def define_material_based_on_description(description):
         return "undefined"
 
 
+
+###Function to assign IFC material to an element###
+##This function assigns an IFC material to an element.##
+
 def assign_ifc_material(element):
     concrete = run("material.add_material", model, name="CON01", category="concrete")
     run("material.assign_material", model, product=element, type="Ifcmaterial" , material=concrete)
+
+
+
+###Function to create a list of custom elements from the model###
+##This function retrieves elements from the model, filters them (e.g., walls and slabs), and creates a list of custom elements.##
 
 def list_of_custom_elements_from_model():
     elements = ifcopenshell.util.selector.filter_elements(model, "IfcWall, IfcSlab")
@@ -83,6 +110,10 @@ def list_of_custom_elements_from_model():
         list_of_custom_elements.append(test)
 
     return list_of_custom_elements
+
+
+
+###Based on desciption and volumes we calculate the prices on the specific elements###
 
 wall_concrete_in_situ_sum = 0
 wall_concrete_precast_sum = 0
@@ -124,6 +155,9 @@ for ele in list_of_custom_elements_from_model():
         print(ele)
 
 
+###Print the results###
+##We print the results to a list##
+
 print(f"""
 Building Wall Volumes:
       The total volume (m3) of concrete (precast) Walls is: {wall_concrete_precast_sum}
@@ -163,6 +197,10 @@ Building Slab Volumes:
       The total volume (m3) of aluminium slabs is: {slab_alu_sum * prices_dict["Aluminium"]}
       The total volume (m3) of steel slabs is: {steel_sum * prices_dict["Steel"]}
       """)
+
+
+###Assign material to elemets###
+##This script assign a material to a element, if the element doesnt have a assigned material, and makes it highlighted in red##
 
 def create_and_assign_new_material():
     # Create a new material
