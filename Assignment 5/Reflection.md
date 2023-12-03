@@ -3,8 +3,6 @@ Mathias Nielsen
 Lucas Malthe Mikkelsen
 
 
-In this final assignment, you will use the peer feedback from your tutorials to write a brief reflection on:
-
 ## Your learning experience for the concept you focused on.
 
 - **Identify your own level at the beginning of this course and where you ended:**
