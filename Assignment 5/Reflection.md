@@ -1,13 +1,13 @@
-**A5: Project Reflection**
+**A5: Project Reflection Group 10**
+Mathias Nielsen
+Lucas Malthe Mikkelsen
+
 
 In this final assignment, you will use the peer feedback from your tutorials to write a brief reflection on:
 
 ## Your learning experience for the concept you focused on.
 
 - **Identify your own level at the beginning of this course and where you ended:**
-
-![image](https://github.com/Ma-th1ago/41934-Advanced-BIM/assets/147403945/8ac5efda-b98b-45b6-9fe8-ad9bd238eb89)
-
 
 Both members of the group started in the category R1: Models level 3, as we already had knowledge of both Grasshopper and Dynamo. After this course, we moved up to R2: Analyst Level 3, as we now have the ability to create a simple script that can be used in connection with the use case "build". In the process, we used Python, BlenderBIM, and IFCopenshell. It is important to note that none of the group members had worked with Python before this course, making it a challenging but rewarding process. We have also gained a good understanding of IFCopenshell and how to extract relevant information from a model and how the IFC library is structured. This provides a good foundation for extracting specific information from a model.
 
